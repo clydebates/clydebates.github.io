@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>Clyde Bates</title>
+<link rel="shortcut icon" type="img/png" href="./assests/img/terminal.png" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -57,7 +58,7 @@ body, html {
 </style>
 <body>
 
-<!-- Navbar (sit on top) -->
+<!-- Nav -->
 <div class="w3-top">
   <div class="w3-bar w3-black" id="myNavbar">
     <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
@@ -90,18 +91,31 @@ body, html {
     <h3 class="w3-center">ABOUT ME</h3>
     <p class="w3-center"><em>I do code.</em></p>
     <p></p>
+    <p><b><i class="fa fa-user w3-margin-right w3-padding-large"></i>Hi, I'm a web developer. But that's not all.</b></p><br>
     <div class="w3-row">
       <div class="w3-col m6 w3-center w3-padding-large">
-        <p><b><i class="fa fa-user w3-margin-right"></i>My Name</b></p><br>
-        <img src="./assests/img/PXL_20210131_213613554.PORTRAIT.jpg" class="w3-round w3-image" alt="Photo of Me" width="500" height="333">
+        <img src="./assests/img/PXL_20210131_213613554.PORTRAIT.jpg" class="w3-round w3-image" alt="Photo of My Cats" width="500" height="333">
       </div>
   
-      <!-- Hide this text on small devices -->
-      <!-- <div class="w3-col m6 w3-hide-small w3-padding-large">
-        <p>Welcome to my website. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-          dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      </div> -->
+      <!-- Show this text on right of picture on larger devices -->
+      <div class="w3-col m6 w3-hide-small w3-padding-small">
+        <p>My name is Clyde. I'm a fullstack developer with knowlege of HTML/CSS, Javascript, Java, SQL (and noSQL) databases, 
+            and all the tools, bells, and whistles that come along with these things. I've got years of professional experience in the development realm,
+            but my background lies in music and the service industry. After getting my Bachelor's in Music Performance, I toured the US with multiple bands while
+            working a day job as a pedicabber in New Orleans. It's these real-world experiences that make me so much more than a developer. I'm a hard worker, 
+            a team builder, a free thinker, a solution finder. Nice to meet you.</p>
+            <br><br>
+            <p>Want to know more about my professional life?</p>
+            <p><a href="./assests/documents/cbatesResume2021.pdf" target="_blank">Click here for my resume.</a></p>
+      </div>
+      <!-- Show it below picture on small devices-->
+      <div class="m6 w3-hide-large w3-hide-medium w3-padding-large">
+        <p>My name is Clyde. I'm a fullstack developer with knowlege of HTML/CSS, Javascript, Java, SQL (and noSQL) databases, 
+            and all the tools, bells, and whistles that come along with these things. I've got years of professional experience in the development realm,
+            but my background lies in music and the service industry. After getting my Bachelor's in Music Performance, I toured the US with multiple bands while
+            working a day job as a pedicabber in New Orleans. It's these real-world experiences that make me so much more than a developer. I'm a hard worker, 
+            a team builder, a free thinker, a solution finder. Nice to meet you.</p>
+      </div>
     </div>
     <!-- <p class="w3-large w3-center w3-padding-16">Im really good at:</p>
     <p class="w3-wide"><i class="fa fa-camera"></i>Photography</p>
@@ -261,9 +275,9 @@ window.onscroll = function() {myFunction()};
 function myFunction() {
     var navbar = document.getElementById("myNavbar");
     if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white";
+        navbar.className = "w3-bar w3-card w3-animate-top w3-white";
     } else {
-        navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
+        navbar.className = "w3-card w3-animate-top w3-black";
     }
 }
 
