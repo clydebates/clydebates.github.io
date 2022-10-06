@@ -1,0 +1,20 @@
+<div class="w3-row w3-margin">
+    Louisiana elections use the majority-vote system. All candidates compete in the same primary, 
+    and a candidate can win the election outright by receiving more than 50 percent of the vote. 
+    This means, for all intents and purposes, you should <b>absolutely</b> vote your heart on Nov 8 for this race.
+    You don't need to vote for whoever seems most likely to win.
+</div>
+<div class="w3-row w3-margin">
+    There will be a run-off race on December 10, and that is when you will need to vote the proverbial "lesser of two evils."
+</div>
+<br>
+<div class="w3-row" *ngFor="let senator of senators">
+    <div class="w3-col">
+        <div>
+            <img src={{senator.photo}} />
+        </div>
+        <div>
+            <p>{{senator.name}}</p>
+        </div>
+    </div>
+</div>
