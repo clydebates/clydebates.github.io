@@ -3,12 +3,12 @@ import { Resolve, RouterModule, Routes } from '@angular/router';
 import { ContactComponent } from './contact/contact.component';
 import { ElectionsComponent } from './elections/elections.component';
 import { HomeComponent } from './home/home.component';
-import { SenatorsComponent } from './senators/senators.component';
+import { CandidatesComponent } from './candidates/candidates.component';
 
 @Injectable({providedIn: 'root'})
-export class ResolvedSenatorsTitle implements Resolve<string> {
+export class ResolvedCandidatesTitle implements Resolve<string> {
   resolve() {
-    return Promise.resolve('Elections | US Senate');
+    return Promise.resolve('Elections');
   }
 }
 
@@ -17,9 +17,9 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'elections', component: ElectionsComponent, children: [
     {
-      path: 'senators',  // child route path
-      title: ResolvedSenatorsTitle,
-      component: SenatorsComponent,  // child route component that the router renders
+      path: 'candidates',  // child route path
+      title: ResolvedCandidatesTitle,
+      component: CandidatesComponent,  // child route component that the router renders
     },
   ]},
   { path: '**', component: HomeComponent },

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ElectionsComponent } from './elections/elections.component';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
-import { SenatorsComponent } from './senators/senators.component';
+import { CandidatesComponent } from './candidates/candidates.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -15,7 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
     ElectionsComponent,
     HomeComponent,
     ContactComponent,
-    SenatorsComponent
+    CandidatesComponent
   ],
   imports: [
     BrowserModule,

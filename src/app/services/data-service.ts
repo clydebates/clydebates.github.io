@@ -5,7 +5,6 @@ import { Observable } from "rxjs";
 @Injectable({providedIn: "root"})
 export class DataService {
     constructor(private http: HttpClient) {
-
     }
 
     public getSenatorData(): Observable<any> {

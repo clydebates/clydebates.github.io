@@ -8,13 +8,14 @@
     There will be a run-off race on December 10, and that is when you will need to vote the proverbial "lesser of two evils."
 </div>
 <br>
-<div class="w3-row" *ngFor="let senator of senators">
-    <div class="w3-col">
-        <div>
-            <img src={{senator.photo}} />
-        </div>
-        <div>
-            <p>{{senator.name}}</p>
-        </div>
-    </div>
-</div>
+
+<table class="w3-table w3-striped w3-bordered">
+    <tr *ngFor="let candidate of candidates">
+    <td><img src={{candidate.photo}} /></td>
+    <td>
+        <p><b>{{candidate.name}}</b></p>
+        <p><em>{{candidate.descr}}</em></p>
+    </td>
+    <td>50</td>
+    </tr>
+</table>

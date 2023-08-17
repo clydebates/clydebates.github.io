@@ -1,11 +1,15 @@
 <!-- Nav -->
-<div class="w3-top">
-  <div class="w3-bar w3-black" id="myNavbar">
-    <a class="w3-bar-item w3-button" routerLink="/home" 
+<div class="inset-x-0 top-0 w-full">
+  <div class="
+  py-3
+  bg-black
+  text-white
+  focus:text-gray-700" id="myNavbar">
+    <a class="hover:text-black hover:bg-gray-300 border-none pt-3 pb-3 pr-8 pl-8" routerLink="/home" 
     routerLinkActive="active" ariaCurrentWhenActive="page">HOME</a>
-    <a class="w3-bar-item w3-button" routerLink="/contact" 
+    <a class="hover:text-black hover:bg-gray-300 border-none pt-3 pb-3 pr-8 pl-8" routerLink="/contact" 
     routerLinkActive="active" ariaCurrentWhenActive="page">CONTACT</a>
-    <a class="w3-bar-item w3-button w3-hide-small" routerLink="/elections"
+    <a class="hover:text-black hover:bg-gray-300 border-none pt-3 pb-3 pr-8 pl-8" routerLink="/elections"
     routerLinkActive="active" ariaCurrentWhenActive="page">2022 LOUISIANA ELECTIONS</a>
   </div>
 </div>
@@ -13,11 +17,11 @@
 <router-outlet></router-outlet>
 
 <!-- Footer -->
-<footer id="footer" class="w3-center w3-black w3-padding-8 w3-opacity w3-hover-opacity-off">
-  <div class="w3-large w3-section">
-    <a class="footer-icon" href="https://www.linkedin.com/in/clydebates"><i
-        class="fa fa-linkedin w3-hover-opacity"></i></a>
-    <a class="footer-icon" href="https://github.com/clydebates/clydebates.github.io"><i
-        class="fa fa-github w3-hover-opacity"></i></a>
+<footer class="relative inset-x-0 bottom-0 h-16 bg-gray-400 flex place-content-center">
+  <div class="p-3">
+    <a class="text-3xl p-4" href="https://www.linkedin.com/in/clydebates"><i
+        class="fa fa-linkedin"></i></a>
+    <a class="text-3xl p-4" href="https://github.com/clydebates/clydebates.github.io"><i
+        class="fa fa-github"></i></a>
   </div>
 </footer>
