@@ -1,11 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
-interface Player {
+class Player {
   id: number;
   name: string;
-  height: string;
+  heightFeet: number;
+  heightInches: number
   skillLevel: number;
+  totalInches: number;
+  constructor(id: number, name: string, heightFeet: number, heightInches: number, skillLevel: number) {
+    this.id = id;
+    this.name = name;
+    this.heightFeet = heightFeet;
+    this.heightInches = heightInches;
+    this.skillLevel = skillLevel;
+    this.totalInches = 0;
+  }
 }
 
 @Component({
@@ -14,41 +23,63 @@ interface Player {
   styleUrls: ['./ultimate-teammates.component.css']
 })
 export class UltimateTeammatesComponent implements OnInit {
-  showNumberPicker = true;
+  showPlayerForm = false;
+  showTeamResults = false;
   numberOfPlayers = 0;
-  playerForm: FormGroup;
+  players: Player[] = [];
+  teamA: Player[] = [];
+  teamB: Player[] = [];
 
-  get players() {
-    const players = <FormArray>this.playerForm.get('players');
-    return players.controls
-  }
-
-  constructor(
-    private formBuilder: FormBuilder,
-  ) {
-    this.playerForm = this.formBuilder.group({
-      players: this.formBuilder.array([]),
-    });
-  }
+  constructor() {}
 
   ngOnInit(): void {
   }
 
-  onSubmit() {
-    // console.log(this.playerForm.value.numberOfPlayers)
+  enterKeySubmit(e: KeyboardEvent, callback: Function) {
+    if (callback && e.key === 'Enter') {
+      callback.call(this);
+    }
   }
 
   numberOfPlayersEntered() {
     let i = 0;
     while (i < this.numberOfPlayers) {
-      this.players.push(this.formBuilder.group({id: i, name: '', height: '', skillLevel: 0}))
+      this.players.push(new Player(i, '', 0, 0, 0))
       i++;
     }
-    this.showNumberPicker = false;
+    this.showPlayerForm = true;
+  }
+
+  get heightValidator() {
+    return /^(3-7)'(?:\s*(?:1[01]|0-9)(''|"))?$/;
   }
 
   calculateTeams() {
-    console.log(this.playerForm);
-    debugger;
+    // convert heightFeet and heightInches to one inches variable
+    // sort by height, then by skill level
+    // create two team arrays
+    // alternate each player pushed into each team array
+    const allPlayers = this.players.map((p: Player) => {
+      p.totalInches = p.heightInches;
+      p.totalInches += p.heightFeet * 12
+      return p;
+    });
+    allPlayers.sort((a, b) => b.totalInches - a.totalInches);
+    allPlayers.sort((a, b) => b.skillLevel - a.skillLevel);
+
+    this.teamA = allPlayers.filter((player, i) => i % 2 === 0);
+    this.teamB = allPlayers.filter((player, i) => i % 2 !== 0);
+
+    this.showPlayerForm = false;
+    this.showTeamResults = true;
+  }
+
+  startOver() {
+    this.showPlayerForm = false;
+    this.showTeamResults = false;
+    this.numberOfPlayers = 0;
+    this.players = [];
+    this.teamA = [];
+    this.teamB = [];
   }
 }

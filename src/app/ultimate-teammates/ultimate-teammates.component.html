@@ -1,44 +1,137 @@
 <section class="flex flex-col justify-center">
     <h1 class="text-3xl text-center">Ultimate Teammates</h1>
     <br/>
-    <div *ngIf="showNumberPicker else playersList">
+    <div *ngIf="!showPlayerForm && !showTeamResults">
         <div class="flex flex-col w-1/2">
             <label for="name">
                 Number of Players:
             </label>
-            <input id="numberOfPlayers" class="border border-gray-300 mb-4" type="number" [(ngModel)]="numberOfPlayers">
+            <input id="numberOfPlayers" class="border border-gray-300 mb-4" type="number" (keydown)="enterKeySubmit($event, numberOfPlayersEntered)" [(ngModel)]="numberOfPlayers">
             <button class="w-24 rounded-full bg-blue-300 px-4" type="button" (click)="numberOfPlayersEntered()">Submit</button>
         </div>
     </div>
-    <ng-template #playersList>
-        <div>
-            <form [formGroup]="playerForm" (ngSubmit)="onSubmit()">
-                <div class="flex flex-col w-1/2 mb-4" formArrayName="players">
-                    <ul *ngFor="let player of players; let i=index">
-                        <div [formGroupName]="i">
-                            <li>
+    <div *ngIf="showPlayerForm">
+        <form #playerForm="ngForm">
+            <div class="flex flex-col w-1/3 mb-4">
+                <ul class="mb-4" *ngFor="let player of players; let i=index">
+                    <div>
+                        <li class="m-2">
+                            <div class="flex justify-between">
                                 <label for="name">
                                     Name:
                                 </label>
-                                <input id="player_{{i}}" class="border border-gray-300" type="text" formControlName="name">
-                            </li>
-                            <li>
+                                <input
+                                    id="player_{{i}}"
+                                    class="border border-gray-300"
+                                    type="text"
+                                    required
+                                    onkeydown="return /[a-z]/i.test(event.key)"
+                                    name="name"
+                                    [(ngModel)]="player.name"
+                                    #name="ngModel"
+                                >
+                            </div>
+                            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert">
+                                <div *ngIf="name.errors?.['required']">
+                                    Name is required.
+                                </div>
+                            </div>
+                        </li>
+                        <li class="m-2">
+                            <div class="flex justify-between">
                                 <label for="height">
                                     Height:
                                 </label>
-                                <input id="player_{{i}}" class="border border-gray-300" type="text" formControlName="height">
-                            </li>
-                            <li>
-                                <label for="name">
+                                <div class="flex gap-3" name="height">
+                                    <span class="flex flex-row-reverse">
+                                        <label class="ml-1" for="feet">
+                                            ft
+                                        </label>
+                                        <input
+                                            id="player_{{i}}"
+                                            class="border border-gray-300 w-8 mr-2"
+                                            type="number"
+                                            name="feet"
+                                            required
+                                            min="0"
+                                            max="8"
+                                            [(ngModel)]="player.heightFeet"
+
+                                        >
+                                    </span>
+                                    <span class="flex flex-row-reverse">
+                                        <label class="ml-1" for="inches">
+                                            in
+                                        </label>
+                                        <input
+                                            id="player_{{i}}"
+                                            class="border border-gray-300 w-8"
+                                            type="number"
+                                            name="inches"
+                                            required
+                                            min="0"
+                                            max="11"
+                                            [(ngModel)]="player.heightInches"
+                                        >
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="m-2">
+                            <div class="flex justify-between">
+                                <label for="skillLevel">
                                     Skill Level (0-5):
                                 </label>
-                                <input id="player_{{i}}" class="border border-gray-300" type="number" formControlName="skillLevel">
-                            </li>
-                        </div>
-                    </ul>
-                    <button class="w-24 rounded-full bg-blue-300 px-4" type="button" (click)="calculateTeams()">Submit</button>
-                </div>
-            </form>
+                                <input
+                                    id="player_{{i}}"
+                                    class="border border-gray-300 w-10"
+                                    type="number"
+                                    min="0"
+                                    max="5"
+                                    required
+                                    name="skillLevel"
+                                    [(ngModel)]="player.skillLevel"
+                                    #skillLevel="ngModel"
+                                >
+                            </div>
+                            <div *ngIf="skillLevel.invalid && (skillLevel.dirty || skillLevel.touched)" class="alert">
+                                <div *ngIf="skillLevel.errors?.['required']">
+                                    Skill Level is required.
+                                </div>
+                            </div>
+                        </li>
+                    </div>
+                </ul>
+                <button
+                    class="w-24 rounded-full px-4"
+                    [ngClass]="!playerForm.valid ? 'bg-gray-400 cursor-default' : 'bg-blue-300 cursor-pointer'"
+                    type="button"
+                    (click)="calculateTeams()"
+                >
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="showTeamResults">
+        <div class="flex justify-between">
+            <table>
+                <th>Team A</th>
+                <tr *ngFor="let player of teamA; let i=index">{{player.name}}</tr>
+            </table>
+            <table>
+                <th>Team B</th>
+                <tr *ngFor="let player of teamB; let i=index">{{player.name}}</tr>
+            </table>
         </div>
-    </ng-template>
+        <div class="flex justify-center">
+            <button
+                class="w-40 rounded-full px-4 bg-blue-300"
+                type="button"
+                (click)="startOver()"
+            >
+                Start Over
+            </button>
+        </div>
+    </div>
 </section>
