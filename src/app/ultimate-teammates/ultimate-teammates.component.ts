@@ -60,8 +60,7 @@ export class UltimateTeammatesComponent implements OnInit {
     // create two team arrays
     // alternate each player pushed into each team array
     const allPlayers = this.players.map((p: Player) => {
-      p.totalInches = p.heightInches;
-      p.totalInches += p.heightFeet * 12
+      p.totalInches = p.heightInches + (p.heightFeet * 12);
       return p;
     });
     allPlayers.sort((a, b) => b.totalInches - a.totalInches);
