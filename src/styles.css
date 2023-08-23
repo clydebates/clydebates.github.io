@@ -21,3 +21,7 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   appearance: textfield;
 }
+
+router-outlet + * {
+  width: 50%;
+}

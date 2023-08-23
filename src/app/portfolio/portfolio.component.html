@@ -5,10 +5,13 @@
   </div>
 
   <!-- Container (Portfolio Section) -->
-  <div class="w3-content w3-container w3-padding-64" id="portfolio">
+  <div class="pt-10 flex flex-col justify-center" id="portfolio">
     <!-- <h3 class="w3-center">MY WORK</h3> -->
-    <p class="w3-center"><em>I'm gonna slowly add little toy projects here just for fun!</em></p>
-
-    <a routerLink="ultimate-teammates" class="card--link">Ultimate Teammates!</a>
-    <router-outlet></router-outlet>
+    <p class="text-center pb-8"><em>Fun toy projects of mine. Work in progress.</em></p>
+    <div class="flex justify-center">
+      <a routerLink="ultimate-teammates" class="card--link w-40 text-center rounded-full bg-blue-300 p-4">Ultimate Teammates!</a>
+    </div>
+    <div class="flex justify-center mt-8 mb-32">
+      <router-outlet></router-outlet>
+    </div>
   </div>
