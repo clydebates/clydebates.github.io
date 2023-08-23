@@ -3,14 +3,28 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { UltimateTeammatesComponent } from './ultimate-teammates/ultimate-teammates.component';
+import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
+import { ContactComponent } from './contact/contact.component';
+import { PortfolioComponent } from './portfolio/portfolio.component';
+import { MainNavComponent } from './main-nav/main-nav.component';
+import { MainFooterComponent } from './main-footer/main-footer.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UltimateTeammatesComponent,
+    HomeComponent,
+    ContactComponent,
+    PortfolioComponent,
+    MainNavComponent,
+    MainFooterComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

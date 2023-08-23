@@ -1,0 +1,40 @@
+<div class="fixed top-0 w-full h-12 flex">
+  <div class="flex gap-4 w-full overflow-hidden text-white bg-black px-4" id="mainNav">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a routerLink="/home" class="nav--link" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a>
+    <a routerLink="/portfolio" class="nav--link" routerLinkActive="active" ariaCurrentWhenActive="page">Portfolio</a>
+    <a routerLink="/contact" class="nav--link" routerLinkActive="active" ariaCurrentWhenActive="page">Contact</a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+    <a routerLink="/home" class="nav--link" routerLinkActive="active" ariaCurrentWhenActive="page" onclick="toggleFunction()">Home</a>
+    <a routerLink="/portfolio" class="nav--link" routerLinkActive="active" ariaCurrentWhenActive="page" onclick="toggleFunction()">Portfolio</a>
+    <a routerLink="/contact" class="nav--link" routerLinkActive="active" ariaCurrentWhenActive="page" onclick="toggleFunction()">Contact</a>
+  </div>
+</div>
+
+<script>
+  // TODO: move these to a component and remove all w3 classes for tailwind ones
+  // Change style of navbar on scroll
+  window.onscroll = function() {myFunction()};
+  function myFunction() {
+      var navbar = document.getElementById("mainNav");
+      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+          navbar.className = "w3-bar w3-card w3-animate-top w3-white";
+      } else {
+          navbar.className = "w3-card w3-animate-top w3-black";
+      }
+  }
+  // Used to toggle the menu on small screens when clicking on the menu button
+  function toggleFunction() {
+      var x = document.getElementById("navDemo");
+      if (x.className.indexOf("w3-show") == -1) {
+          x.className += " w3-show";
+      } else {
+          x.className = x.className.replace(" w3-show", "");
+      }
+  }
+</script>
