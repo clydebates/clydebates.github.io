@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { shuffle, sortBy } from 'lodash';
 
 class Player {
   id: number;
@@ -63,11 +64,11 @@ export class UltimateTeammatesComponent implements OnInit {
       p.totalInches = p.heightInches + (p.heightFeet * 12);
       return p;
     });
-    allPlayers.sort((a, b) => b.totalInches - a.totalInches);
-    allPlayers.sort((a, b) => b.skillLevel - a.skillLevel);
 
-    this.teamA = allPlayers.filter((player, i) => i % 2 === 0);
-    this.teamB = allPlayers.filter((player, i) => i % 2 !== 0);
+    const sorted = sortBy(shuffle(allPlayers), (player) => [player.totalInches, player.skillLevel]);
+
+    this.teamA = sorted.filter((player, i) => i % 2 === 0);
+    this.teamB = sorted.filter((player, i) => i % 2 !== 0);
 
     this.showPlayerForm = false;
     this.showTeamResults = true;
