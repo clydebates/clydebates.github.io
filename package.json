@@ -1,10 +1,11 @@
 {
   "name": "mywebsite",
-  "version": "0.0.0",
+  "version": "2.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --base-href https://github.com/clydebates/clydebates.github.io",
+    "deploy": "npx angular-cli-ghpages --dir=dist/mywebsite",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
