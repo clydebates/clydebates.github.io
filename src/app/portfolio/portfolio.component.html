@@ -1,48 +1,103 @@
-<div class="bgimg-2 w3-display-container w3-opacity-min">
-    <div class="w3-display-middle">
-      <span class="w3-xxlarge w3-text-white w3-wide">PORTFOLIO</span>
+<div class="lg:mx-40 mt-14 flex flex-col justify-center text-white" id="portfolio">
+  <div class="p-4 h-20 rounded-md bg-gradient-to-br from-slate-800 to-slate-400">
+    <h1 class="text-center pb-8 text-2xl"><em><b>Personal Projects</b></em></h1>
+  </div>
+  <div class="flex p-8">
+    <div class="flex-grow w-1/3">
+      <span class="flex justify-center">
+        <button class="w-40 rounded-full bg-slate-500 py-4" type="button" (click)="openModal(false, 'ultimateTeammates'); showUltimateTeammates=true;">
+            Ultimate Teammates
+        </button>
+      </span>
+    </div>
+    <div class="flex-grow w-1/3">
+      <span class="flex justify-center">
+        <button class="w-40 rounded-full bg-slate-500 py-4" type="button" (click)="openModal(true, 'breakTheTargets')">
+          Break the Targets
+        </button>
+      </span>
+    </div>
+    <div class="flex-grow w-1/3">
+      <span class="flex justify-center">
+        <button class="w-40 rounded-full bg-slate-500 py-4" type="button" (click)="openModal(true, 'pyPong')">
+          PyPong
+        </button>
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="lg:mx-40 flex flex-col justify-center text-white" id="portfolio">
+  <div class="p-4 h-20 rounded-md bg-gradient-to-tr from-slate-800 to-slate-400">
+    <h1 class="text-center pb-8 text-2xl text-white"><em><b>Professional Work</b></em></h1>
+  </div>
+  <div class="flex p-8">
+    <div class="flex-grow w-1/3">
+      <span class="flex justify-center">
+        <button class="w-40 rounded-full bg-slate-500 py-4" type="button" (click)="openModal(false, 'truecoach')">
+            TrueCoach by Xplor
+        </button>
+      </span>
+    </div>
+    <div class="flex-grow w-1/3">
+      <span class="flex justify-center">
+        <button class="w-40 rounded-full bg-slate-500 py-4" type="button" (click)="openModal(false, 'rfd')">
+          RFD & Associates
+        </button>
+      </span>
+    </div>
+    <div class="flex-grow w-1/3">
+    </div>
+  </div>
+</div>
+
+<dialog id="modalOverlay" class="h-3/4 w-full lg:h-1/2 lg:w-1/2 rounded-xl shadow-xl bg-gray-700 text-white" #portfolioDialog>
+  <div *ngIf="isExternalProject; else internalProjects">
+    <div class="flex justify-center">
+      <img [src]="portfolioItems[openItem].imgSrc" [alt]="portfolioItems[openItem].imgAlt" />
+    </div>
+    <br>
+    <div id="portItemHeader" class="flex justify-center">
+      <h2 class="text-2xl">{{portfolioItems[openItem].title}}</h2>
+      <br>
+    </div>
+    <div id="portItemDescr" class="p-4">
+      <p class="text-justify">{{portfolioItems[openItem].description}}</p>
+      <br>
+      <div class="flex justify-center gap-2">
+        <a class="w-32 rounded-full bg-gray-400 text-center" [href]="portfolioItems[openItem].ghLink" target="_blank" (click)="closeModal()">
+          <i class="fa fa-github"></i>
+          GitHub
+        </a>
+        <button class="w-32 rounded-full bg-gray-400" (click)="closeModal()">
+          Close
+        </button>
+      </div>
     </div>
   </div>
 
-  <!-- Container (Portfolio Section) -->
-  <div class="pt-10 flex flex-col justify-center" id="portfolio">
-    <!-- <h3 class="w3-center">MY WORK</h3> -->
-    <p class="text-center pb-8"><em>Fun toy projects of mine. Work in progress.</em></p>
-    <div class="flex p-8">
-      <div class="flex-grow w-1/3">
-        <span class="flex justify-center">
-          <a 
-            routerLink="ultimate-teammates" 
-            class="card--link w-40 text-center rounded-full bg-red-300 py-4"
-          >
-            Ultimate Teammates
-          </a>
-        </span>
-      </div>
-      <div class="flex-grow w-1/3">
-        <span class="flex justify-center">
-          <a 
-            href="https://github.com/clydebates/hallebot-breaks-the-targets"
-            target="_blank"
-            class="card--link w-40 text-center rounded-full bg-red-300 p-4"
-          >
-            Break the Targets
-          </a>
-        </span>
-      </div>
-      <div class="flex-grow w-1/3">
-        <span class="flex justify-center">
-          <a 
-            href="https://github.com/clydebates/pypong"
-            target="_blank"
-            class="card--link w-40 text-center rounded-full bg-red-300 p-4"
-          >
-            PyPong
-          </a>
-        </span>
+  <ng-template #internalProjects>
+    <div class="flex flex-col justify-center">
+      <h2 class="text-2xl text-center mt-4">{{portfolioItems[openItem].title}}</h2>
+      <br>
+      <img *ngIf="portfolioItems[openItem].imgSrc" [src]="portfolioItems[openItem].imgSrc" [alt]="portfolioItems[openItem].imgAlt" />
+      <p class="text-justify p-4">{{portfolioItems[openItem].description}}</p>
+      <div *ngIf="showUltimateTeammates" class="p-8">
+        <app-ultimate-teammates></app-ultimate-teammates>
       </div>
     </div>
-    <div class="flex justify-center mt-8 mb-32">
-      <router-outlet></router-outlet>
+    <div class="px-8" *ngIf="portfolioItems[openItem].resumePoints">
+      <ul *ngFor="let point of portfolioItems[openItem].resumePoints">
+        <li class="list-disc">{{point}}</li>
+      </ul>
     </div>
-  </div>
+    <div class="flex justify-center gap-2 my-4">
+      <a *ngIf="portfolioItems[openItem].companyLink" class="w-1/3 rounded-full bg-gray-400 text-center" [href]="portfolioItems[openItem].companyLink" target="_blank" (click)="closeModal()">
+        {{portfolioItems[openItem].linkTitle}}
+      </a>
+      <button class="w-1/3 rounded-full bg-gray-400" (click)="closeModal();">
+        Close
+      </button>
+    </div>
+  </ng-template>
+</dialog>
